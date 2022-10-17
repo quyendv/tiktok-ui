@@ -1,0 +1,24 @@
+- Video initiate: có cách sửa lỗi buộc dùng ssh key thay vì https, khi nào gặp thì xem: https://fullstack.edu.vn/learning/reactjs?id=0d56f3e5-e529-4dc2-bad7-3a7789204335
+- Customize cra: https://fullstack.edu.vn/learning/reactjs?id=18bff2bc-6918-4ff6-af56-50a1c2d8398b
+    + npm i -D customize-cra react-app-rewired
+    + config-overrides.js
+    + sửa package.json: https://github.com/timarney/react-app-rewired/#3-flip-the-existing-calls-to-react-scripts-in-npm-scripts-for-start-build-and-test
+- babel-plugin-module-resolver: tránh việc import '../../../.....' quá dài
+        -> https://fullstack.edu.vn/learning/reactjs?id=a15493ae-8244-4f87-9861-6710af2c2b5a
+        -> https://www.npmjs.com/package/babel-plugin-module-resolver
+    + Cài: npm install --save-dev babel-plugin-module-resolver
+    + tạo .babelrc
+    + vấn đề import kiểu đó giống import thư viện nên config khác đi
+    + config theo video: https://youtu.be/wwGkGi1WFgg?t=289
+        -> sau import nó sẽ lấy từ root và chỉ cần '~/App' nếu config dấu '~'
+        -> chú ý rằng ~ chỉ đại diện cho ./src nên giúp ta dễ import file ở ngay cấp 1 src từ file cấp sâu trong src thôi
+        -> với kiểu ../../ vân vân thì ta nên đổi thành ~/ còn kiểu ./ thì thôi thay ~/ làm gì
+    + Editors autocompletion: https://youtu.be/wwGkGi1WFgg?t=395
+        -> jsconfig.json rồi config theo video
+    + Nạp babelrc vào webpack: https://youtu.be/wwGkGi1WFgg?t=484
+        -> sửa file config-overrides.js theo video và docs: https://github.com/arackaf/customize-cra/blob/master/api.md#usebabelrc
+        -> chú ý có lỗi nhận nhầm thành hooks thì disable nó đi
+- prettier: https://fullstack.edu.vn/learning/reactjs?id=4149692d-7c4b-4fca-b7d1-7cdf4a28c04a
+    -> tạo .prettierrc rồi copy rule vào, như a sơn cũng được (đầy đủ hơn trong setting, sau nên chuyển rule trong setting ra file .prettierrc vào cd/~)
+    -> Thêm .vscode/setting.json rồi thêm config vào
+    ==> máy cá nhân setup hết rồi nên có thể k cần, nhưng làm nhóm thì cần
