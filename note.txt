@@ -22,3 +22,39 @@
     -> tạo .prettierrc rồi copy rule vào, như a sơn cũng được (đầy đủ hơn trong setting, sau nên chuyển rule trong setting ra file .prettierrc vào cd/~)
     -> Thêm .vscode/setting.json rồi thêm config vào
     ==> máy cá nhân setup hết rồi nên có thể k cần, nhưng làm nhóm thì cần
+- Cấu hình SASS/CSS:
+    + Tạo components/GlobalStyles ...
+    + Thêm <GlobalStyles></GlobalStyles> vào index.js
+    + cài npm i -D sass
+    + clear logo, index.css, App.css và import liên quan, để <h1>React App</h1> trong <App/> thôi
+    + reset css: ta k code chay mà tải `npm install --save normalize.css`, link: https://github.com/necolas/normalize.css
+        -> sau đó `@import 'normalize.css'` trong file GlobalStyles.scss
+    + set Default:
+        -> font: vào GlobalStyles @import url('https://fonts.googleapis.com/css2?family=family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:wght@300;400;500;700;900&display=swap');
+        -> tạo body (trong GlobalStyles luôn) paste font-family vào: font-family: 'Roboto', sans-serif;
+        -> Dùng kĩ thuật font-size 62.5% cho html rồi font-size 1.6rem cho body để trả lại (62.5% để tiện css kích thước theo rem)
+        -> *{box-sizing: border-box}
+        -> Thêm line-height 1.5 và text-rendering: optimizeSpeed cho body (kiến thức mới)
+        -> Thêm biến vào :root {} nếu cần
+    ==> Tóm lại file GlobalStyles.scss có:
+                @import 'normalize.css';
+                @import url('https://fonts.googleapis.com/css2?family=family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:wght@300;400;500;700;900&display=swap');
+
+                :root {
+                    --primary: #fe2c55;
+                }
+
+                * {
+                    box-sizing: border-box;
+                }
+
+                html {
+                    font-size: 62.5%;
+                }
+
+                body {
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 1.6rem;
+                    line-height: 1.5;
+                    text-rendering: optimizeSpeed;
+                }
