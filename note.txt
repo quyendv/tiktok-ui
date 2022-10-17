@@ -30,7 +30,7 @@
     + reset css: ta k code chay mà tải `npm install --save normalize.css`, link: https://github.com/necolas/normalize.css
         -> sau đó `@import 'normalize.css'` trong file GlobalStyles.scss
     + set Default:
-        -> font: vào GlobalStyles @import url('https://fonts.googleapis.com/css2?family=family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:wght@300;400;500;700;900&display=swap');
+        -> font: vào GlobalStyles @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
         -> tạo body (trong GlobalStyles luôn) paste font-family vào: font-family: 'Roboto', sans-serif;
         -> Dùng kĩ thuật font-size 62.5% cho html rồi font-size 1.6rem cho body để trả lại (62.5% để tiện css kích thước theo rem)
         -> *{box-sizing: border-box}
@@ -38,7 +38,7 @@
         -> Thêm biến vào :root {} nếu cần
     ==> Tóm lại file GlobalStyles.scss có:
                 @import 'normalize.css';
-                @import url('https://fonts.googleapis.com/css2?family=family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:wght@300;400;500;700;900&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
                 :root {
                     --primary: #fe2c55;
@@ -58,3 +58,22 @@
                     line-height: 1.5;
                     text-rendering: optimizeSpeed;
                 }
+- Cấu hình Router/Layout:
+    1. Phân tích layout chính: https://youtu.be/FwTQ0yoF0_g?t=106
+    2. Cài đặt react-router-dom: `npm i react-router-dom`
+        -> tạo pages/Home & Following như đã học bài Router
+        -> Thêm Router vào (lần này thêm ở file App.js chứ k phải index.js): https://youtu.be/FwTQ0yoF0_g?t=508
+    3. Đưa cấu hình routea ra ngoài: https://youtu.be/FwTQ0yoF0_g?t=613
+        + Ít pages thì để x10 lên vẫn bth, tuy nhiên cần biết cách đưa ra ngoài
+        + Tạo routes/index.js, trong đó chia publicRoutes và privateRoutes chia pages k cần và cần đăng nhập mới xem được, chú ý khi import các thứ nên dùng ~luôn đi để khi chuyển vị trí code đi sang file khác vẫn đúng
+        + trong App import ra publicRoutes rồi map nó ra, -> xem video rõ hơn
+    4. Xây dựng cơ chế tải layout
+        + thêm folder Layout trong components có folder DefaultLayout chứa index.js kèm các folder Header, Sidebar, ...
+        + xem video + code dễ hiểu hơn
+        + tối ưu import Layout: https://youtu.be/FwTQ0yoF0_g?t=1215
+        + Tiếp theo là setup layout trong App
+        + set up page layout null -> Fragment
+        + Tối ưu page upload còn chứa header nữa: https://youtu.be/FwTQ0yoF0_g?t=1521
+            -> tự import header vào layout
+            -> set layout trong routes/index.js là HeaderOnly
+        => vấn đề cuối: HeaderOnly và DefaultLayout đều có foller Header -> components chung này k nên đưa vào src/components (nơi chứa các components chung dùng ở đâu cũng được) mà đưa vào src/components/Layout/components (chứa components chung của 2 layout đó thôi)
