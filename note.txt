@@ -133,3 +133,12 @@
             + caret color
             -> Lưu ý scss có thể phân cấp nhưng k lạm dụng mà đâm sau quá 2 cấp, nên tách ra nếu sâu hơn để dễ bảo trì
             + css mới :not(:placeholder-shonw), dùng khi placeholder k được hiển thị (khi nhập): https://stackoverflow.com/questions/8639282/notempty-css-selector-is-not-working
+    ** UI Header #2:
+        - Cài tippy: `npm i @tippyjs/react` rồi đọc cách dùng: https://github.com/atomiks/tippyjs-react#-usage
+            -> demo đoạn text bên dưới khi hover vào element: https://youtu.be/6lB3HhjEr7E?t=222
+            -> <Tippy content='', placement=''></Tippy>
+            -> đọc thêm props khác: https://atomiks.github.io/tippyjs/v5/all-props/
+        - Cách lấy style của searchResult: https://youtu.be/6lB3HhjEr7E?t=764
+            -> cách rất hay, tạo setTimeout debugger
+        - over-fit cho img or video
+        --> khó quá chả note được gì, xem code chia components thôi
