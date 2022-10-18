@@ -33,7 +33,7 @@
         -> font: vào GlobalStyles @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
         -> tạo body (trong GlobalStyles luôn) paste font-family vào: font-family: 'Roboto', sans-serif;
         -> Dùng kĩ thuật font-size 62.5% cho html rồi font-size 1.6rem cho body để trả lại (62.5% để tiện css kích thước theo rem)
-        -> *{box-sizing: border-box}
+        -> * { box-sizing: border-box, m0, p0 }
         -> Thêm line-height 1.5 và text-rendering: optimizeSpeed cho body (kiến thức mới)
         -> Thêm biến vào :root {} nếu cần
     ==> Tóm lại file GlobalStyles.scss có:
@@ -45,6 +45,8 @@
                 }
 
                 * {
+                    margin: 0;
+                    padding: 0;
                     box-sizing: border-box;
                 }
 
@@ -77,3 +79,8 @@
             -> tự import header vào layout
             -> set layout trong routes/index.js là HeaderOnly
         => vấn đề cuối: HeaderOnly và DefaultLayout đều có foller Header -> components chung này k nên đưa vào src/components (nơi chứa các components chung dùng ở đâu cũng được) mà đưa vào src/components/Layout/components (chứa components chung của 2 layout đó thôi)
+
+*** Xây dựng header:
+    - cài `npm i classnames`, sau đó import ... from 'classnames/bind' trong file module.scss (chú ý /bind nếu k sẽ k work đâu)
+        -> từ đó đặt cx = classNames.bind(styles) vào và ta có thể đặt <h2 className={cx('post-item')}></h2> hoặc nếu k vẫn có thể dùng ={style['post-item']} thôi
+    - còn lại tự xem, chủ yếu css thôi
