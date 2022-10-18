@@ -40,8 +40,14 @@
                 @import 'normalize.css';
                 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
-                :root {
+                                :root {
                     --primary: #fe2c55;
+                    --black: black;
+                    --text-color: #333;
+                    
+                    // Default Layout
+                    --default-layout-header-height: 60px;
+                    --default-layout-width: 1150px;
                 }
 
                 * {
@@ -60,6 +66,17 @@
                     line-height: 1.5;
                     text-rendering: optimizeSpeed;
                 }
+
+                button, input, [tabindex] {
+                    border: none;
+                    outline: none;
+                }
+
+                a[href] {
+                    color: var(--text-color);
+                    text-decoration: none;
+                }
+
 - Cấu hình Router/Layout:
     1. Phân tích layout chính: https://youtu.be/FwTQ0yoF0_g?t=106
     2. Cài đặt react-router-dom: `npm i react-router-dom`
@@ -84,3 +101,35 @@
     - cài `npm i classnames`, sau đó import ... from 'classnames/bind' trong file module.scss (chú ý /bind nếu k sẽ k work đâu)
         -> từ đó đặt cx = classNames.bind(styles) vào và ta có thể đặt <h2 className={cx('post-item')}></h2> hoặc nếu k vẫn có thể dùng ={style['post-item']} thôi
     - còn lại tự xem, chủ yếu css thôi
+
+    ** UI header #1:
+        - copy logo: https://youtu.be/hFK4okw-XYs?t=129
+            -> tìm đến thẻ symbol với #... mà ta tìm đc ấy, xong copy outerHTML, xóa symbol, format là được
+            -> tạo thêm assets/images/logo.svg rồi tạo index export ra. Chú ý logo: require('~/assets/images/logo.svg').default,
+            -> cách lấy svg về thử: https://youtu.be/hFK4okw-XYs?t=459
+        - Icons:
+            -> link copy package fontawesome: https://fullstack.edu.vn/learning/reactjs?id=894b971b-3bc9-478e-ba01-ba4802213cc4#font-deps
+                    "@fortawesome/fontawesome-svg-core": "^1.3.0",
+                    "@fortawesome/free-brands-svg-icons": "^6.0.0",
+                    "@fortawesome/free-regular-svg-icons": "^6.0.0",
+                    "@fortawesome/free-solid-svg-icons": "^6.0.0",
+                    "@fortawesome/react-fontawesome": "^0.1.17",
+                -> thêm vào package.json dependencies rồi npm i
+                -> Cách dùng: https://youtu.be/hFK4okw-XYs?t=1104
+        - CSS header:
+            + mã màu k nên để cứng mà nên đặt biến sau làm theme mới dễ
+            + Đối với thẻ div mà chứa element ở 2 đầu thì nên padding 1 bên, chứ nếu k bị lệch: https://youtu.be/hFK4okw-XYs?t=1919
+            + thêm vào GlobalStyles:
+                    button, input, [tabindex] {
+                        border: none;
+                        outline: none;
+                    }
+
+                    a[href] {
+                        color: var(--text-color);
+                        text-decoration: none;
+                    }
+            + thuộc tính mới học: focus-within (nhận css khi nó hoặc thẻ con trong nó bị focus)
+            + caret color
+            -> Lưu ý scss có thể phân cấp nhưng k lạm dụng mà đâm sau quá 2 cấp, nên tách ra nếu sâu hơn để dễ bảo trì
+            + css mới :not(:placeholder-shonw), dùng khi placeholder k được hiển thị (khi nhập): https://stackoverflow.com/questions/8639282/notempty-css-selector-is-not-working
