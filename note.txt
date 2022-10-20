@@ -155,3 +155,8 @@
             -> Sửa border khi hover vào để kết hợp outline vs rounded
             -> Xử lý thêm css cho class riêng: https://youtu.be/LPGQoWG7pno?t=2709, chý ý cách truyền [className]: className khác với các cách truyền props khác
             -> Cách thêm icon: chú ý css cách icon vs title
+    ** UI Header #4:
+        - Tạo MenuPopper:
+            + Chú ý cách tách components, cách sử dụng Tippy placement: https://atomiks.github.io/tippyjs/#placements
+            + Cách thêm className cho Popper: như bài trước Button ta làm { [className]: className } nhưng ta cũng có thể viết cx('any', className) với className như props được truyền vào
+            + Tippy delay: number or [number, number] = [show, hide]

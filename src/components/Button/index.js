@@ -45,10 +45,8 @@ function Button({
         Comp = 'a';
     }
 
-    console.log(className);
-
     const classes = cx('wrapper', {
-        [className]: className,
+        [className]: className, // hoặc tách ra ngoài object này và thêm className như 'wraper'
         primary,
         outline,
         text,
@@ -57,8 +55,6 @@ function Button({
         small,
         large,
     });
-
-    console.log(classes);
 
     return (
         <Comp className={classes} {...props}>

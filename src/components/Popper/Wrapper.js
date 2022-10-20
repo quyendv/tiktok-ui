@@ -3,9 +3,10 @@ import styles from './Popper.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Wrapper({ children }) {
+function Wrapper({ children, className }) {
     return (
-        <div className={cx('wrapper')}>{children}</div>
+        // chú ý cách thêm class custom khác so với cách ở Button
+        <div className={cx('wrapper', className)}>{children}</div>
     );
 }
 

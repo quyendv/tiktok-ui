@@ -63,6 +63,7 @@ $search-btn-width: 52px;
 }
 
 .search-title {
+    padding: 5px 12px;
     font-size: 1.4rem;
     font-weight: 600;
     color: rgba(22, 24, 35, 0.5);
@@ -93,3 +94,11 @@ $search-btn-width: 52px;
         background-color: rgba(22, 24, 35, 0.06);
     }
 }
+
+.more-btn {
+    font-size: 2rem;
+    padding: 4px 8px;
+    background-color: transparent; // bỏ background mờ mờ mặc định của btn
+    margin-left: 28px;
+}
+

@@ -61,7 +61,15 @@
     }
 }
 
-.icon + .title, .title + .icon {
+.icon {
+    display: inline-block;
+    // css để nhiều btn chứa icon đứng cạnh nhau (trên dưới) thì text k bị lệch do width các btn khác nhau
+    width: 20px;
+    text-align: center; // hoặc left cũng đẹp
+}
+
+.icon + .title,
+.title + .icon {
     margin-left: 8px;
 }
 
