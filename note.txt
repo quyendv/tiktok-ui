@@ -160,3 +160,8 @@
             + Chú ý cách tách components, cách sử dụng Tippy placement: https://atomiks.github.io/tippyjs/#placements
             + Cách thêm className cho Popper: như bài trước Button ta làm { [className]: className } nhưng ta cũng có thể viết cx('any', className) với className như props được truyền vào
             + Tippy delay: number or [number, number] = [show, hide]
+    ** UI Header #5:
+        - Bổ sung lỗi phần trước: cursor cho more-btn, padding 2 bên inner của Header, ...
+        - Tạo MenuPopper cấp 2: 
+            -> Tạo header cho MenuPopper cấp 2, có title (đk show) và onBack
+            -> áp dụng cho nhiều cấp hơn nữa, chú ý cách đặt tên key để liên tục truy cập vào cấp sâu hơn
