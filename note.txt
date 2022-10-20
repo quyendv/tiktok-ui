@@ -142,3 +142,16 @@
             -> cách rất hay, tạo setTimeout debugger
         - over-fit cho img or video
         --> khó quá chả note được gì, xem code chia components thôi
+    ** UI Header #3:
+        - Tạo Components Button
+            -> Xem cách tổ chức components, thay đổi thẻ khi truyền to, href
+            -> Chú ý phần target="_blank" để mở trong trang mới
+            -> trong Button className mới là tên class, chứ k phải classNames do gợi ý, đoạn này mất khá lâu fix đấy
+            -> Chú ý từ bài trước mà quên k note: cứ tạo sẵn border vs màu transparent để khi cần border thì set thêm màu, tránh việc kích thước bị thay đổi
+            -> Chú ý xử lý khi các nút cạnh nhau nữa: + .wrapper hoặc & + .wrapper
+            -> Chú ý phần disabled: giảm opacity, pointer-events: none, user-select: none và phải xử lý logic: if(disabled) delete props.onClick nói riêng và các events khác nói chung (Object.key(props).forEach...)
+            -> trick cho button rounded là bo góc số lớn như 999px sẽ tròn chứ k bị méo như 50%
+            -> Xử lý ưu tiên primary hơn rounded bằng cách để primary css bên dưới rounded thay vì dùng !important để kết hợp primary vs rounded
+            -> Sửa border khi hover vào để kết hợp outline vs rounded
+            -> Xử lý thêm css cho class riêng: https://youtu.be/LPGQoWG7pno?t=2709, chý ý cách truyền [className]: className khác với các cách truyền props khác
+            -> Cách thêm icon: chú ý css cách icon vs title

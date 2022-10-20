@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import images from '~/assets/images';
+import Button from '~/components/Button';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './Header.module.scss';
 
@@ -58,7 +59,28 @@ function Header() {
                 </Tippy>
 
                 {/* Actions */}
-                <div className={cx('actions')}></div>
+                <div className={cx('actions')}>
+                    <Button
+                        text
+                        >
+                        Upload
+                    </Button>
+                    <Button
+                        primary
+                        // outline
+                        // text
+                        // rounded
+                        // disabled
+                        // small
+                        // large
+                        // href="https://fullstack.edu.vn/learning/reactjs?id=5437f73d-b1ba-46d7-8ceb-85e13f7e447e"
+                        // onClick={() => alert('Clicked')}
+                        // target="_blank"
+                        // className={cx('abc def')}
+                    >
+                        Log in
+                    </Button>
+                </div>
             </div>
         </header>
     );
