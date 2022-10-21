@@ -165,3 +165,13 @@
         - Tạo MenuPopper cấp 2: 
             -> Tạo header cho MenuPopper cấp 2, có title (đk show) và onBack
             -> áp dụng cho nhiều cấp hơn nữa, chú ý cách đặt tên key để liên tục truy cập vào cấp sâu hơn
+    ** UI Header #6:
+        - Khắc phục bài trước: blur ra khỏi MenuPopper để ẩn đi, nhưng khi hover (mở) lại thì vẫn ở lv cũ mà k reset về lv đầu
+            -> dùng onHide của Tippy: https://youtu.be/VRpsvMwtdws?t=135
+        - Tạo actions ở Header khi có user đăng nhập
+            + Tạo các action-btn, bọc bởi Tippy, lưu ý 1 số attr như content, placeholder, trigger='click' để show khi click, delay, offset={[10, 10]}
+                -> Tips để show ra cái tippy bị chặn k xem đc trên devtools: https://youtu.be/VRpsvMwtdws?t=966
+                -> Tìm được rồi thì xem cách css Tippy: https://youtu.be/VRpsvMwtdws?t=1019
+            + avatar
+            + userMenu, chú ý cách tạo separate
+                -> cách dịch menu so vs avatar: offset={[10, 10]}

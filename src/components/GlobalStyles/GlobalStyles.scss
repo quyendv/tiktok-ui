@@ -5,8 +5,8 @@
     --primary: #fe2c55;
     --black: black;
     --white: #fff;
-    --text-color: #333;
-    
+    --text-color: #161823;
+
     // Default Layout
     --default-layout-header-height: 60px;
     --default-layout-width: 1150px;
@@ -28,9 +28,12 @@ body {
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
+    color: var(--text-color);
 }
 
-button, input, [tabindex] {
+button,
+input,
+[tabindex] {
     border: none;
     outline: none;
 }
@@ -38,4 +41,27 @@ button, input, [tabindex] {
 a[href] {
     color: var(--text-color);
     text-decoration: none;
+}
+
+// Custom tippy: thêm body để mạnh hơn
+body {
+    .tippy-box {
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+        background-color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-content {
+        padding: 8px 9px;
+    }
+    // mở devtools lên, nó set mũi tên là :before nên set màu phải dùng color
+    .tippy-arrow {
+        color: rgba(84, 84, 84, 0.92);
+    }
+    // dịch mũi tên lên tránh bị tạo kẻ đậm do lồng nhau vs box
+    .tippy-box[data-placement^=bottom]>.tippy-arrow:before {
+        top: -8px;
+    }
 }
