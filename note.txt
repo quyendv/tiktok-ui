@@ -175,3 +175,25 @@
             + avatar
             + userMenu, chú ý cách tạo separate
                 -> cách dịch menu so vs avatar: offset={[10, 10]}
+    ** UI Header #7: 
+        - Thay font family
+            -> cách copy font từ network/Fonts: https://youtu.be/iyJ7b4_AdjQ?t=144
+            -> Tạo fonts-face ... (chú ý src: '/assets') chứ k phải từ /src
+            -> cài lại fonts: chú ý 1 số nút vẫn lỗi cần sửa thêm https://youtu.be/iyJ7b4_AdjQ?t=485
+        - Thay Header icons
+            -> ở video làm Upload icon, nhưng tiktok giờ k có icon đó nữa nên copy tạm từ github
+            -> Chọn svg trên devtools rồi copy outerHTML, paste vào file: https://youtu.be/iyJ7b4_AdjQ?t=712
+            -> sửa thành cú pháp jsx: class thành className, chuyển camelCase
+            -> Chú ý riêng icon Message nó bị nhỏ hơn so vs cái khác, nên sẽ lỗi k hiển thị nếu set kích thước như cũ
+        - Tạo Components Image
+            + Cần ref: https://youtu.be/iyJ7b4_AdjQ?t=1089
+            + Tạo default img: https://youtu.be/iyJ7b4_AdjQ?t=1257
+                -> thử link tạo: https://placeholder.imageonline.co/
+                -> trang nén ảnh: https://tinypng.com/
+                -> components Image truyền src, alt vào rồi dùng để tránh warning
+                -> Chú ý tạo state fallback, src={fallback || src} và hàm nhận lỗi onError
+                -> Xử lý bị văng icon lỗi của ảnh (hỏi khó giải thích): https://youtu.be/iyJ7b4_AdjQ?t=1599
+                -> Xử lý việc muốn truyền thêm fallback:
+                    -> trùng tên thì đổi tên state, hoặc là dùng ES6 fallback (truyền vào) : customFallback để đổi tên nó đi
+                    -> gán fallback: customFallback = images.noImage rồi handleError set bằng noImage
+                ==> Tóm lại là ban đầu src ưu tiên lấy src truyền vài vì fallback(state) khởi tạo bằng '', nếu k load được src thì nhận onError và set bằng customFallback truyền vào (nếu k có thì nó bằng noImage tức giá trị default)

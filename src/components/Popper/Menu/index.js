@@ -47,7 +47,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
                         {/* Tức từ cấp 2 trở đi thì hiện title */}
                         {history.length > 1 && (
                             <Header
-                                title="Language"
+                                title="Language" /* cần fix thêm phần title,  nên để thành history[history.length - 1].children.title */
                                 onBack={() => setHistory((prev) => prev.slice(0, prev.length - 1))}
                             />
                         )}
