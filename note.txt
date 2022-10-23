@@ -197,3 +197,30 @@
                     -> trùng tên thì đổi tên state, hoặc là dùng ES6 fallback (truyền vào) : customFallback để đổi tên nó đi
                     -> gán fallback: customFallback = images.noImage rồi handleError set bằng noImage
                 ==> Tóm lại là ban đầu src ưu tiên lấy src truyền vài vì fallback(state) khởi tạo bằng '', nếu k load được src thì nhận onError và set bằng customFallback truyền vào (nếu k có thì nó bằng noImage tức giá trị default)
+    ** Logic Header #1:
+        - Nhiều chi tiết cần nhớ, xem kỹ video
+        - Sửa AccountItem phần img thành Image
+        - Tách code phần search trong header ra vì khi setState thì nó re-render những phần k cần thiết
+            -> tách cả css, cả biến scss ra theo
+        - Logic khi gõ chữ thì nút clear mới hiện:
+            -> Cách 1 (trong video): khi searchValue truthy thì mới hiện
+                {!!searchValue && (
+                    <button className={cx('clear')} onClick={() => setSearchValue('')}>
+                        <FontAwesomeIcon icon={faCircleXmark} />
+                    </button>
+                )}
+            -> Cách 2: từ comment, khá hay, dùng CSS
+                -> Vẫn tạo nút <button></button> chứa dấu clear đó, sao đó css:
+                
+                .clear {
+                    display: none;
+                }
+
+                .search input:not(:placeholder-shown) ~ .clear {
+                    display: block or flex; // ban đầu ẩn đi
+                }
+        - Thêm useRef để khi clear thì focus lại vào input
+        - Logic khi hiện kết quả tìm kiếm, rồi khi click ra ngoài input thì popper ẩn đi, khi focus lại thì lại hiện kết quả cũ đó
+            -> Thêm state showResult và dùng onClickOutside của Tippy: https://youtu.be/cgLkdc6Y8Zk?t=1613
+            -> Dùng onClickOutside để set showResult = false khi click ra ngoài
+            -> Dùng onFocus ở input để set lại showResult = true (nhớ tránh nhầm vs searchValue, searchResult đấy) 
