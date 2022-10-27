@@ -224,3 +224,20 @@
             -> Thêm state showResult và dùng onClickOutside của Tippy: https://youtu.be/cgLkdc6Y8Zk?t=1613
             -> Dùng onClickOutside để set showResult = false khi click ra ngoài
             -> Dùng onFocus ở input để set lại showResult = true (nhớ tránh nhầm vs searchValue, searchResult đấy) 
+    ** Logic Header #2: Kết nối search API của F8
+        -> Xem phần đầu giới thiệu về API
+        -> Sửa useEffect để sử dụng khi searchValue thay đổi
+        -> fetch API lưu vào searchResult rồi trong Popper duyệt list in AccoutItem
+        -> Chú ý trong useEffect thêm check searchValue trước khi truyền vào url fetch tránh query rỗng
+        -> bug: + người dùng chỉ muốn tìm kết quả khi ngừng gõ lại, việc load các từ input khác là thừa, và đôi khi tìm kiếm thừa đó lại load xong sau kết quả mong muốn dẫn đến show sai cái cần: https://youtu.be/8b_H4onKXWc?t=1237
+                + Nhập chuỗi rỗng bị lỗi vì BE trim() nó đi, như k nhập -> if (searchValue.trim())
+                + Nhập ? hoặc &, ... gây lỗi url: dùng encodeURIComponent(searchValue) truyền vào ${} url api: https://youtu.be/8b_H4onKXWc?t=1457
+        -> Xử lý loading:
+                + Set loading = true trước khi fetch, fetch xong có res hoặc lỗi (catch) đều thành false
+                + Set đk hiện icon loading và đồng thời ẩn icon clear đi
+                + Thêm css quay cho loading, chú ý dùng transform nhưng có css cũ rồi phải điền lại, nếu k ghi đề k ăn
+        -> Chú ý cách fake trạng thái rất hay: https://youtu.be/8b_H4onKXWc?t=1840
+        -> Khi nhập xong rồi xóa đi thì phải thêm setSearchResult bằng mảng rỗng trước khi return kết thúc
+        -> Click vào AccoutItem trong result chuyển trang cá nhân của người đó: https://youtu.be/8b_H4onKXWc?t=2023
+            -> sửa div thành Link thêm display block (ban đầu là flex nên k sao), thêm to `/@${data.nickname}`
+            -> sửa thêm routes: https://youtu.be/8b_H4onKXWc?t=2080
