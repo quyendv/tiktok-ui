@@ -1,3 +1,5 @@
+import routesConfig from '~/config/routes'
+
 // Layouts
 import { HeaderOnly } from '~/components/Layout';
 
@@ -13,12 +15,12 @@ const publicRoutes = [
     // Bổ sung chú thích:
     // Layout: DefaultLayout if undefined / route.layout if layout=truthy / Fragment if null (not Layout)
     // Component: là children truyền vào của Layout đó (VD Home là children truyền vào của DefaultLayout )
-    { path: '/', component: Home },
-    { path: '/following', component: Following },
-    { path: '/@:nickname', component: Profile },
+    { path: routesConfig.home, component: Home },
+    { path: routesConfig.following, component: Following },
+    { path: routesConfig.profile, component: Profile },
     // { path: '/upload', component: Upload, layout: null },
-    { path: '/upload', component: Upload, layout: HeaderOnly },
-    { path: '/search', component: Search, layout: null },
+    { path: routesConfig.upload, component: Upload, layout: HeaderOnly },
+    { path: routesConfig.search, component: Search, layout: null },
 ];
 
 // phải đăng nhập mới vào được

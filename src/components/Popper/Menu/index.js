@@ -11,7 +11,7 @@ const cx = classNames.bind(styles);
 
 const defaultFn = () => {}; // dùng Fn trống thì k sợ bị lỗi
 
-function Menu({ children, items = [], onChange = defaultFn }) {
+function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn }) {
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1]; // Cấp cuối, luôn lấy ra cấp cuối và render, lùi về thì xóa cấp cuối khỏi history
 
@@ -39,6 +39,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
             // visible
             delay={[0, 200]}
             offset={[12, 8]}
+            hideOnClick={hideOnClick} // truyền dạng props sau có cái set true còn nhận
             interactive
             placement="bottom-end"
             render={(attrs) => (

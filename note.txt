@@ -272,3 +272,30 @@
         -> Chú ý trong file là hàm async/await thì khi gọi hàm đó cũng phải thêm await (cũng như sync ở hàm gọi) nó mới đúng
     ==> Mẹo mở github.dev nhanh là đứng ở repos rồi gõ dấu '.' là được, k cần sửa đường dẫn thành dev -> nhưng là commit cuối
         -> commit chỉ định thì: https://youtu.be/_zeOSnVHI2I?t=2142
+
+*** Sửa lỗi Header:
+    ** Sửa và hoàn thiện Header #1
+        - Thêm link trang chủ vào logo + căn giữa
+        - Thêm config/routes.js để đặt link (chú ý src/routes chứa đường dẫn đi đâu, còn file này như để đặt tên để sau này sửa đường dẫn chỉ sửa 1 chỗ thay vì nhiều chỗ)
+            -> rồi sửa ở routes/index.js
+            -> Sửa các file khác: dùng Ctrl Shift F hoặc sidebar bên cạnh tìm (chú ý '/' và "/")
+        - Sửa font ô search: nó chưa set font-family -> đặt thành biến rồi dùng
+        - Ngăn nhập kí tự space là kí tự đầu tiên trong ô tìm kiếm
+            -> Hướng là check kí tự đầu tiên nếu là cách thì k cho gõ cách nữa, else thì thôi
+            -> Không đưa vào useEffect vì nó sẽ gọi rất nhiều lần, nên đưa vào onChange lúc setSearchValue ấy
+            -> https://youtu.be/cZbm5P7V-iM?t=772
+            -> Có vài cú pháp như sau: (chú ý TH là khi chỉ còn 1 kí tự hợp lệ xóa đi thành chuỗi rỗng phải xóa được nhé)
+                + F8:       const searchValue = e.target.value;
+                            if (!searchValue.startsWith(' ')) { // nếu k bắt đầu bằng space hoặc trim() nó đi là truthy (khác rỗng, null, ...) thì ok setSearchValue
+                                setSearchValue(searchValue);
+                            }
+                + Comment:  const searchValue = e.target.value;
+                            setSearchValue(searchValue.startsWith(' ') ? searchValue.trim() : searchValue);
+                            -> cái này gần tương tự cái kia, tuy nhiên nên dùng trimStart() (nói bên dưới) thay cho trim() thì đúng hơn (à mà nó update liên tục nên k nếu gõ phần đầu là space thì đã trim() rồi k có chuyển phần sau có space đâu)
+                + String.prototype: trimStart() sẽ loại bỏ các space ở đầu
+                        -> có thêm cả trimEnd() nữa nếu cần
+        - K hiện border khi focus vào nút submit (nút icon search ấy), còn nút input focus vào hiện border cụm search: https://youtu.be/cZbm5P7V-iM?t=1038
+            -> Chú ý rằng, cơ chế là ta set focus-within cho cả cụm search nên việc nhấn vào btn-submit là hành vi mặc định, nên cần chặn lại
+            -> Chú ý 2 là phải gọ onMouseDown chứ k phải onClick vì khi nhấn xuống đã focus rồi (e.preventDefault chứ k phải e.target nhé)
+        - K ẩn menuUser (Tippy) khi click vào avatar: https://youtu.be/cZbm5P7V-iM?t=1269
+            -> hideOnClick, nhưng lưu ý nên truyền dạng props mặc định false để nếu cần còn truyền true vào được
