@@ -241,3 +241,9 @@
         -> Click vào AccoutItem trong result chuyển trang cá nhân của người đó: https://youtu.be/8b_H4onKXWc?t=2023
             -> sửa div thành Link thêm display block (ban đầu là flex nên k sao), thêm to `/@${data.nickname}`
             -> sửa thêm routes: https://youtu.be/8b_H4onKXWc?t=2080
+    ** Logic Header #3: Xử lý lỗi gửi request nhiều lần liên tục khi nhập -> debounce
+        - Tạo src/hooks/useDebounce.js và cài đặt
+            -> báo lỗi deps: https://youtu.be/ZoFl6gxRv6g?t=374, quickfix...
+        - Sử dụng: ta gọi useDebounce ra và truyền searchValue kèm 500ms mới thay đổi state debounced, và truyền deps debounced vào useEffect để khi cập nhật lại debounced mới gọi api, và cả url fetch nữa
+            -> https://youtu.be/ZoFl6gxRv6g?t=565
+        -> Xem kĩ đoạn sau để hiểu cơ chế
