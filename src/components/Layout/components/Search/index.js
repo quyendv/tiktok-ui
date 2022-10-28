@@ -5,6 +5,8 @@ import classNames from 'classnames/bind';
 import { useEffect, useRef, useState } from 'react';
 import { useDebounce } from '~/hooks';
 
+// import * as request from '~/utils/request';
+import * as searchServices from '~/apiServices/searchServices';
 import AccountItem from '~/components/AccountItem';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './Search.module.scss';
@@ -29,16 +31,66 @@ function Search() {
 
         setLoading(true);
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // *** Các cú pháp cơ bản
+        // axios.get(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
+        // axios
+        //     .get(`https://tiktok.fullstack.edu.vn/api/users/search`, {
+        //         params: { q: debounced, type: 'less' },
+        //     })
+        // request
+        //     .get('users/search', {
+        //         params: { q: debounced, type: 'less' },
+        //     })
+        //     .then((res) => {
+        //         setSearchResult(res.data.data);
+        //         console.log(res.data);
+        //         setLoading(false);
+        //     })
+        //     .catch(() => {
+        //         setLoading(false);
+        //     });
+
+        // *** Tách thành utils/request
+        // request
+        //     .get('users/search', {
+        //         params: { q: debounced, type: 'less' },
+        //     })
+        //     .then((res) => {
+        //         setSearchResult(res.data); // sửa thành chỉ cần .data 1 lần
+        //         setLoading(false);
+        //     })
+        //     .catch(() => {
+        //         setLoading(false);
+        //     });
+
+        // *** Dùng async await ở đây
+        // const fetchApi = async () => {
+        //     try {
+        //         const res = await request.get('users/search', {
+        //             params: {
+        //                 q: debounced,
+        //                 type: 'less',
+        //             },
+        //         });
+        //         setSearchResult(res.data);
+        //         setLoading(false);
+        //     } catch (error) {
+        //         setLoading(false);
+        //     }
+        // };
+        // fetchApi();
+
+        // *** Tách thành apiServices/searchServices.js
+        const fetchApi = async () => {
+            setLoading(true);
+            const result = await searchServices.search(debounced); // Chú ý đoạn này search là hàm async/await nên buộc phải có await khi gọi
+            setSearchResult(result);
+            setLoading(false);
+
+        };
+        fetchApi();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [debounced]);
 
     const handleClear = () => {

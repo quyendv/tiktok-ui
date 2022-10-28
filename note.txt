@@ -247,3 +247,28 @@
         - Sử dụng: ta gọi useDebounce ra và truyền searchValue kèm 500ms mới thay đổi state debounced, và truyền deps debounced vào useEffect để khi cập nhật lại debounced mới gọi api, và cả url fetch nữa
             -> https://youtu.be/ZoFl6gxRv6g?t=565
         -> Xem kĩ đoạn sau để hiểu cơ chế
+*** Axios:
+    - Xem từ trước đoạn này để hiểu công dụng và 1 số trang tương tự axios như supper agent: https://youtu.be/_zeOSnVHI2I?t=351
+    - Chú ý xem cách dùng, nhưng lưu ý:
+        + Ban đầu: 
+                fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
+                    .then((res) => res.json())
+        + Sau: (chú ý bỏ được đoạc convert parse js: (res) => res.json())
+                axios.get(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
+            hoặc có thể tách query ra object làm tham số thứ 2 dạng param và k cần encodeURIComponent nữa, axios tự làm cho
+            axios.get(`https://tiktok.fullstack.edu.vn/api/users/search`, {
+                params: { q: debounced, type: 'less' },
+            })
+        ==> NHỚ: params có 's' chứ k phải param, mãi mới fix được
+    - Quan trọng: res trả về lúc này k giống như trước gọi bằng fetch nữa mà nó có nhiều key, xem video hoặc clg ra nhìn, nên dữ liệu ta cần sẽ phải là
+            res.data.data (data 1 là của axios trả về, hiểu đơn giản là res.data của axios mới là res của fetch trước dùng nên phải .data nữa)
+            -> video: https://youtu.be/_zeOSnVHI2I?t=628
+    - Tạo instance: docs https://github.com/axios/axios#creating-an-instance, video: https://youtu.be/_zeOSnVHI2I?t=1002
+        -> Chú ý việc set baseURL có dấu '/' cuối đường dẫn k là tùy, nếu có thì phần gọi bỏ '/' ở đầu và ngược lại
+    - Sửa res.data.data để gọn hơn: https://youtu.be/_zeOSnVHI2I?t=1261
+        -> Chú ý phần import * as request thì request là đối tượng Module có key default và get (tại thời điểm trong video)
+    - Dùng async await luôn trong file: https://youtu.be/_zeOSnVHI2I?t=1417
+    - Tách thành file searchServices và gọi:
+        -> Chú ý trong file là hàm async/await thì khi gọi hàm đó cũng phải thêm await (cũng như sync ở hàm gọi) nó mới đúng
+    ==> Mẹo mở github.dev nhanh là đứng ở repos rồi gõ dấu '.' là được, k cần sửa đường dẫn thành dev -> nhưng là commit cuối
+        -> commit chỉ định thì: https://youtu.be/_zeOSnVHI2I?t=2142
