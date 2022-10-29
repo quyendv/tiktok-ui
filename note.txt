@@ -299,3 +299,29 @@
             -> Chú ý 2 là phải gọ onMouseDown chứ k phải onClick vì khi nhấn xuống đã focus rồi (e.preventDefault chứ k phải e.target nhé)
         - K ẩn menuUser (Tippy) khi click vào avatar: https://youtu.be/cZbm5P7V-iM?t=1269
             -> hideOnClick, nhưng lưu ý nên truyền dạng props mặc định false để nếu cần còn truyền true vào được
+    ** Sửa và hoàn thiện Header #2:
+        - Sửa thanh cuộn window khi nội dung dài: cho header thành fixed, đồng thời đẩy container bên dưới xuống 1 margin bằng header
+            -> sửa background header k trong suốt nữa để khi cuộn window lên k bị thấy page home bên layer dưới: https://youtu.be/3dit5NJVxMU?t=246
+            -> z-index cho header: tầm 10
+        - Sửa thêm thanh cuộn UserMenu: https://youtu.be/3dit5NJVxMU?t=370
+            -> Ban đầu để header của menu cùng cấp với data của nó, nên nếu cuộn sẽ cuộn cả header, fix thêm thẻ bọc lấy data trong nó
+            -> Chú ý thẻ Popper_wrapper có max-height nhưng thẻ menu-body vừa tạo ôm data nó k theo height của cha, nên thêm dflex vào wrapper với direction column
+            -> 1 vấn đề lần đầu gặp là flex nó co lại header do flex-shrink, sửa thành 0 cho header: https://youtu.be/3dit5NJVxMU?t=639
+        - Thay đổi hình dáng kích thước thanh cuộn chung
+            -> Chú ý thuộc tính overflow-y có auto và mới là overlay (tức nổi lên, như auto hay scroll thì nó đẩy content sang bằng width của nó còn overlay nó nổi lên, nên k chiếm width luôn)
+            -> CSS cho scrollbar: chú ý có thumb + track = scrollbar, cái này có note 1 ảnh, hoặc tham khảo tương tự như input range
+            -> Cách copy css tiktok cho scrollbar: https://youtu.be/3dit5NJVxMU?t=1011
+            -> Tham khảo thêm nếu muốn userMenu cũng overlay thay vì auto: https://youtu.be/3dit5NJVxMU?t=1123
+        - Sửa title trang + favicon -> sửa ở file index.html
+            -> cách tìm và copy favicon: https://youtu.be/3dit5NJVxMU?t=1299
+                + tìm ở source(Ctrl U) hoặc mở tab <head></head> rồi search 'favicon'
+                + vào network img, chuột phải vào nút reload trình duyệt chọn cái cuối 'Empty cache and hard reload'
+                    -> hoặc media, manifest, ...
+                + hoặc tìm bằng 'tiktok.com/favicon.ico' -> tải về hoặc link, nhưng f8 dạy tải về và đặt luôn ở thư mục public
+        - Fix warning Tippy: xem giải thích: https://youtu.be/3dit5NJVxMU?t=1515
+            -> đại loại là nó sẽ thêm 1 thẻ div vào cha của nó, và dễ nổi bọt rồi gây ảnh hưởng thẻ cha, nên nó nhắc nên thêm hẳn vào sau root (xem kĩ video đoạn giải thích)
+            -> Chú ý đoạn này, truyền {...passProps} nhưng gọi nó ở đầu vì nếu ở cuối sẽ ghi đè hết các phần trước, xem đoạn này: https://youtu.be/3dit5NJVxMU?t=1714
+            -> Chú ý sửa phần search nhé k phải userMenu
+            => tóm lại thêm appendTo={() => document.body} vào phần tippy của Search
+            -> Lỗi khác: https://youtu.be/3dit5NJVxMU?t=1875 giật giật khi cuộn
+                -> bọc thêm 1 thẻ nữa cho cả phần return trước đó: https://youtu.be/3dit5NJVxMU?t=1942
