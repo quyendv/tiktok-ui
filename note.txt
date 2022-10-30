@@ -338,3 +338,15 @@
             + Có nhiều môi trường, tham khoản trước đoạn này xíu: https://youtu.be/9KIub8JNcXg?t=1361
             -> thêm .env.development rồi thêm base tiktok (dùng trong utils/httpRequest) vào (để string hay link bth cũng được hết)
             -> Dùng process.env rồi .REACT_APP_BASE_URL mà dùng
+    ** PropTypes: dùng create react app thì k cần i nữa
+        - Chú ý là import PropTypes from 'prop-types' nhé, đừng nhầm với lib khác vì nó gợi ý k đúng
+            -> Dùng vs AccountItem: https://youtu.be/_azdqV1MoXE?t=206
+        - PropTypes.node: https://youtu.be/_azdqV1MoXE?t=314
+            -> những thứ render được: numbers, strings, elements, array, ...
+            -> những thứ k được: function, ...
+            -> Dùng với Button children là PropTypes.node
+        - PropTypes sẽ báo lỗi nếu nhập sai, trong TH k nhập k báo lỗi
+            -> muốn bắt buộc điền vào thì dùng .isRequired
+        - Tham khảo thêm phần Usage: https://www.npmjs.com/package/prop-types
+            + .element, .elementType, .instanceOf, .oneOf, .oneOfType, arrayOf, ...
+            + kết hợp như: .func.isRequired, .any.isRequired
