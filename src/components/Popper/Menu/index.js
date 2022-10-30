@@ -1,5 +1,6 @@
 import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 
@@ -48,7 +49,8 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
                         {/* Tức từ cấp 2 trở đi thì hiện title */}
                         {history.length > 1 && (
                             <Header
-                                title="Language" /* cần fix thêm phần title,  nên để thành history[history.length - 1].children.title */
+                                // title="Language" /* cần fix thêm phần title, nên để thành history[history.length - 1].title hoặc current.title (vì current luôn là phần tử cuối) */
+                                title={current.title}
                                 onBack={() => setHistory((prev) => prev.slice(0, prev.length - 1))}
                             />
                         )}
@@ -63,5 +65,12 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
         </HeadlessTippy>
     );
 }
+
+Menu.propTypes = {
+    children: PropTypes.node.isRequired,
+    items: PropTypes.array,
+    hideOnClick: PropTypes.bool,
+    onChange: PropTypes.func,
+};
 
 export default Menu;

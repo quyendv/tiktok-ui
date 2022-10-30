@@ -22,8 +22,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import Image from '~/components/Image';
 import Menu from '~/components/Popper/Menu';
-import Search from '../Search';
 import config from '~/config';
+import Search from '../Search';
 
 const cx = classNames.bind(styles);
 

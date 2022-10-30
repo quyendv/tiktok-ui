@@ -350,3 +350,12 @@
         - Tham khảo thêm phần Usage: https://www.npmjs.com/package/prop-types
             + .element, .elementType, .instanceOf, .oneOf, .oneOfType, arrayOf, ...
             + kết hợp như: .func.isRequired, .any.isRequired
+    ** Áp dụng PropTypes: 
+        - impt để import nhanh (có 1 số extension snippet cho react có thể generate ra cả ffc với propTypes, kèm gõ nhanh các loại PropTypes nữa)
+            -> Cơ mà đa số extention snippets đều gộp chung với các cái khác như reactjs, reactnative, redux, ... k cần thiết, hoặc snippet nhưng khó hiểu khó nhớ, k theo ý
+            -> Tự custom thêm snippet cần dùng và theo ý của mình là được
+        - Sửa các components thêm propTypes: https://youtu.be/UbhnlxLWXZU?t=90
+            -> AccountItem, Button, GlobalStyles, Image, Popper/Wrapper.js, Menu/Header + Menu/index + Menu/MenuItem, DefaultLayout 
+            -> nhớ key là className chứ k có key classNames đâu nhé, cứ nhầm mãi, Tabnine ml toàn gợi ý k đúng
+            -> Sửa phần title của header trong UserMenu (ban đầu cố định là language) -> sửa thành current.title là được (vì current luôn là history[history.length - 1] và nếu nó là cấp con nó sẽ có title)
+        - Chỉ muốn 1 children thì dùng kiểu React.Children.only(children), https://youtu.be/UbhnlxLWXZU?t=320
