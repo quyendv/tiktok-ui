@@ -35,6 +35,15 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
         });
     };
 
+    // Khi tắt Menu thì items về cấp đầu chứ k ở mãi cấp cuối trước khi tắt: Reset to first page
+    const handleResetMenu = () => {
+        setHistory((prev) => prev.slice(0, 1));
+    };
+
+    const handleBackMenu = () => {
+        setHistory((prev) => prev.slice(0, prev.length - 1));
+    };
+
     return (
         <HeadlessTippy
             // visible
@@ -51,7 +60,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
                             <Header
                                 // title="Language" /* cần fix thêm phần title, nên để thành history[history.length - 1].title hoặc current.title (vì current luôn là phần tử cuối) */
                                 title={current.title}
-                                onBack={() => setHistory((prev) => prev.slice(0, prev.length - 1))}
+                                onBack={handleBackMenu}
                             />
                         )}
 
@@ -59,7 +68,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
                     </PopperWrapper>
                 </div>
             )}
-            onHide={() => setHistory((prev) => prev.slice(0, 1))}
+            onHide={handleResetMenu}
         >
             {children}
         </HeadlessTippy>

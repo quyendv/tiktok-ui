@@ -72,7 +72,7 @@
                     outline: none;
                 }
 
-                a[href] {
+                a[href] { // có thẻ bỏ href đi, tránh xung đột với color của Button khi có to/href (thành thẻ a có href)
                     color: var(--text-color);
                     text-decoration: none;
                 }
@@ -367,3 +367,20 @@
         - Với những folder k export default thì k làm như trên được, mà phải export { những cái export ra } from ... hoặc chỉ cần export * from ...
             -> Tuy nhiên tốt nhất nên export * bởi vì sau này nếu thêm cái cần export đỡ mất công vào file index.js sửa nữa
             -> VD Icons, routes
+    ** Tối ưu code Header phần cuối:
+        - Ô search khi text dài bị nó close absolute che đi: https://youtu.be/J-6vcwggqGQ?t=51
+            -> padding right tầm 40px cho thẻ input là được
+        - Button khi thêm to/href vào thì color lại ăn theo text color ở GlobalStyles: https://youtu.be/J-6vcwggqGQ?t=193
+            -> do độ ưu tiên của a[href] cao hơn Button_primary, => có 2 cách 1 là giảm ưu tiên thẻ a bỏ href đi, 2 là thêm important vào css primary
+            -> a[href] là thẻ a chứa href mới nhận css, nhưng thực ra đa phần dùng a là có href rồi nên chọn cách 1 cũng được
+               và k chỉ primary mà các styles khác như outline, rounded, ... đều bị css như vậy nên important phải sửa nhiều
+        - Phần css scrollbar css thừa (bị duplicate)
+        - Review lại các components
+            - Trong file Menu.js, hàm render của Tippy nếu dùng useCallback nhưng k chắc Components Tippy có dùng useMemo không thì cũng k được gì
+                -> Video nói về phần này: https://youtu.be/J-6vcwggqGQ?t=573
+                -> Với cả phần userMenu đó k render lại quá nhiều mà tốn hiệu năng, có thể k cần xử lý
+                + Trong video vẫn tách phần render của Tippy ra hàm riêng, cho gọn thôi chứ cũng k dùng useCallback
+                + Tách onHide ra hàm riêng (phần xử lý khi tắt thì về Menu trang đầu chứ k đứng mãi ở trang đã tắt như Language): https://youtu.be/J-6vcwggqGQ?t=668
+                + Tách thêm 1 số hàm khác...
+                    ->  Lưu ý file Menu k nên dùng useCallback, useMemo vì có 1 state mà nó dùng ở gần hết file, nên kiểu gì state thay đổi cũng thay đổi gần hết, useCallback k được gì đâu
+            - Tách phần render của Tippy trong Search ra nếu nhiều: https://youtu.be/J-6vcwggqGQ?t=1354

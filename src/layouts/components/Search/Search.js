@@ -19,7 +19,7 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
 
-    const debounced = useDebounce(searchValue, 500);
+    const debouncedValue = useDebounce(searchValue, 500);
 
     const inputRef = useRef();
 
@@ -32,14 +32,14 @@ function Search() {
         setLoading(true);
 
         // *** Các cú pháp cơ bản
-        // axios.get(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
+        // axios.get(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debouncedValue)}&type=less`)
         // axios
         //     .get(`https://tiktok.fullstack.edu.vn/api/users/search`, {
-        //         params: { q: debounced, type: 'less' },
+        //         params: { q: debouncedValue, type: 'less' },
         //     })
         // request
         //     .get('users/search', {
-        //         params: { q: debounced, type: 'less' },
+        //         params: { q: debouncedValue, type: 'less' },
         //     })
         //     .then((res) => {
         //         setSearchResult(res.data.data);
@@ -53,7 +53,7 @@ function Search() {
         // *** Tách thành utils/request
         // request
         //     .get('users/search', {
-        //         params: { q: debounced, type: 'less' },
+        //         params: { q: debouncedValue, type: 'less' },
         //     })
         //     .then((res) => {
         //         setSearchResult(res.data); // sửa thành chỉ cần .data 1 lần
@@ -68,7 +68,7 @@ function Search() {
         //     try {
         //         const res = await request.get('users/search', {
         //             params: {
-        //                 q: debounced,
+        //                 q: debouncedValue,
         //                 type: 'less',
         //             },
         //         });
@@ -83,14 +83,14 @@ function Search() {
         // *** Tách thành apiServices/searchService.js
         const fetchApi = async () => {
             setLoading(true);
-            const result = await searchService.search(debounced); // Chú ý đoạn này search là hàm async/await nên buộc phải có await khi gọi
+            const result = await searchService.search(debouncedValue); // Chú ý đoạn này search là hàm async/await nên buộc phải có await khi gọi
             setSearchResult(result);
             setLoading(false);
         };
         fetchApi();
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [debounced]);
+    }, [debouncedValue]);
 
     const handleClear = () => {
         setSearchValue('');
