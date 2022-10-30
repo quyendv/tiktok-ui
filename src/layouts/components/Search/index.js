@@ -5,10 +5,10 @@ import classNames from 'classnames/bind';
 import { useEffect, useRef, useState } from 'react';
 import { useDebounce } from '~/hooks';
 
-// import * as request from '~/utils/request';
-import * as searchServices from '~/apiServices/searchServices';
+// import * as request from '~/utils/request'; // chú ý đã đổi tên thành httpRequest ở phần tái cấu trúc và tối ưu code #1 rồi
 import AccountItem from '~/components/AccountItem';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
+import * as searchService from '~/services/searchService';
 import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);
@@ -80,10 +80,10 @@ function Search() {
         // };
         // fetchApi();
 
-        // *** Tách thành apiServices/searchServices.js
+        // *** Tách thành apiServices/searchService.js
         const fetchApi = async () => {
             setLoading(true);
-            const result = await searchServices.search(debounced); // Chú ý đoạn này search là hàm async/await nên buộc phải có await khi gọi
+            const result = await searchService.search(debounced); // Chú ý đoạn này search là hàm async/await nên buộc phải có await khi gọi
             setSearchResult(result);
             setLoading(false);
         };
@@ -110,7 +110,7 @@ function Search() {
     };
 
     return (
-        // Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context. 
+        // Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context.
         <div>
             <HeadlessTippy
                 visible={showResult && searchResult.length > 0}

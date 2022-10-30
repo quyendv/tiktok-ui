@@ -325,3 +325,16 @@
             => tóm lại thêm appendTo={() => document.body} vào phần tippy của Search
             -> Lỗi khác: https://youtu.be/3dit5NJVxMU?t=1875 giật giật khi cuộn
                 -> bọc thêm 1 thẻ nữa cho cả phần return trước đó: https://youtu.be/3dit5NJVxMU?t=1942
+    ** Tái cấu trúc và tối ưu code #1:
+        - apiServices -> services, searchServices -> searchServices
+            -> Chú ý nếu nó hỏi auto update thì yes, k thì sửa chay bằng Ctrl Shift F rồi replace bằng thanh bên dưới: https://youtu.be/9KIub8JNcXg?t=304
+        - Layout ra ngoài, sửa thành layouts (chữ thường và thêm s)
+        - Thêm file index.js trong config để dễ import nhiều config khác: https://youtu.be/9KIub8JNcXg?t=659
+        - Muốn import DefaultLayout thay vì {DefaultLayout} : https://youtu.be/9KIub8JNcXg?t=1029
+            -> ở layouts/index.js: export {default, default as DefaultLayout} from ...
+            -> export kiểu như trên tức là ta có thể import DefaultLayout hoặc {DefaultLayout} đều được nhé
+        - Sửa utils/request thành utils/httpRequest luôn: https://youtu.be/9KIub8JNcXg?t=1201
+        - Tạo file env (environment)
+            + Có nhiều môi trường, tham khoản trước đoạn này xíu: https://youtu.be/9KIub8JNcXg?t=1361
+            -> thêm .env.development rồi thêm base tiktok (dùng trong utils/httpRequest) vào (để string hay link bth cũng được hết)
+            -> Dùng process.env rồi .REACT_APP_BASE_URL mà dùng
