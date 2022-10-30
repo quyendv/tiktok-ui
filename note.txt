@@ -359,3 +359,11 @@
             -> nhớ key là className chứ k có key classNames đâu nhé, cứ nhầm mãi, Tabnine ml toàn gợi ý k đúng
             -> Sửa phần title của header trong UserMenu (ban đầu cố định là language) -> sửa thành current.title là được (vì current luôn là history[history.length - 1] và nếu nó là cấp con nó sẽ có title)
         - Chỉ muốn 1 children thì dùng kiểu React.Children.only(children), https://youtu.be/UbhnlxLWXZU?t=320
+    ** Sửa lỗi nhiều file index.js
+        - Sửa file index cũ thành file theo folder -> khi import lại xấu
+        - Vẫn sửa file index cũ, song lại thêm file index.js nữa trong folder đó chỉ để export {default} ... thôi -> tốn nhiều file
+            -> mà nếu sửa vậy khi vscode hỏi auto update import thì cứ chọn No vì chả đổi import đâu
+            -> Các components sửa lại, trừ 1 số cái k export default như Icons, ...
+        - Với những folder k export default thì k làm như trên được, mà phải export { những cái export ra } from ... hoặc chỉ cần export * from ...
+            -> Tuy nhiên tốt nhất nên export * bởi vì sau này nếu thêm cái cần export đỡ mất công vào file index.js sửa nữa
+            -> VD Icons, routes
