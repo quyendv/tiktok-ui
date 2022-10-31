@@ -406,3 +406,8 @@
                 -> mặc định hiện icon và ẩn activeIcon, khi thẻ có thêm class .avtive thì đảo lại hiện activeIcon và ẩn icon
                 -> sửa các icon df để tránh lệch: https://youtu.be/I6DWZWkAhhY?t=2541
             + Thêm page/Live, config file routes dẫn đến trang page dạng DefaultLayout
+    ** Xây dựng UI Sidebar #2: 
+        - Tạo SuggestedAccount và AccountItem bên trong, chú ý rằng AccountItem nhỏ nên viết chung thì k được đặt thẻ bọc là wrapper nữa, gây rối
+        - Có thể dùng opacity set mã màu hex 8 số: https://youtu.be/-5jFoaGqcF8?t=1422, khá hay
+        - Chú ý css kích thước icon là dùng font-size chứ k phải set width, height nhé, trước đã note rổi mà ít làm nên quên đó
+        - Copy màu của icon (dạng sgv): copy phần fill ấy: https://youtu.be/-5jFoaGqcF8?t=1514
