@@ -6,9 +6,9 @@
 
 .container {
     width: 1150px;
+    max-width: 100%; // Nếu kích thước màn hình nhỏ hơn 1150 thì mó lấy full 100%
     min-height: 1000px;
     margin-top: var(--default-layout-header-height, 60px);
-    background-color: #777;
     display: flex;
 }
 

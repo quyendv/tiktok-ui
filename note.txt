@@ -384,3 +384,25 @@
                 + Tách thêm 1 số hàm khác...
                     ->  Lưu ý file Menu k nên dùng useCallback, useMemo vì có 1 state mà nó dùng ở gần hết file, nên kiểu gì state thay đổi cũng thay đổi gần hết, useCallback k được gì đâu
             - Tách phần render của Tippy trong Search ra nếu nhiều: https://youtu.be/J-6vcwggqGQ?t=1354
+*** Xây dựng Sidebar:
+    ** Xây dựng UI Sidebar #1:
+        - Move components Sidebar ra ngoài layouts/components vì dùng nhiều
+        - Thêm Components Menu chứa các MenuItem là các cụm For you, Following, Live
+            -> Chú ý MenuItem nhỏ thì có thể gộp cả vào folder Menu k cần tách thêm folder riêng vs scss riêng
+            -> file Menu/index export {default} from './Menu' luôn k cần as, as cho MenuItem thôi
+            -> MenuItem chứa các link đến đường dẫn, click vào đổi màu nên phải dùng NavLink thay vì Link (cùng của react-router-dom)
+                -> Giờ mới dạy :<, k biết cái này sớm
+                -> NavLink nó sẽ tự thêm class active vào thẻ khi đường dẫn trùng với to đc set, tuy nhiên nó là class thuần k phải module css, 
+                -> Cách chuyển active sang module với NavLink: NavLink của react-router v6 cho phép truyền callback vào className, và ta có đối tượng được truyền vào, có hàm isActive
+                    -> className={(nav) => cx('menu-item', { active: nav.isActive }) // hoặc để 'active' thay active cũng được -> css thôi
+                    -> Vấn đề nữa: ta có đường dẫn '/' và '/following' thì khi bắt following nó vẫn nhận home là active, vì vậy ngoài thuộc tính to ta phải thêm end vào để nó bắt chính xác '/' thôi chứ k bắt đường dẫn con của nó
+                    -> Tham khảo cuối link https://reactrouter.com/en/6.4.1/components/nav-link
+        - Css cho Menu: 
+            + Chú ý mẹo: các MenuItem đứng 1 hàng ấy, dùng df cho MenuItem là nó xuống hết, chứ bth mình phải df cho cả Menu rồi f-direction column thừa thãi, vì flex là nó như block chiếm 1 hàng rồi
+            + css cho active NavLink: config module như note bên trên rồi set color sẽ bắt cho cả text và icon thôi 
+            + Icon tiktok nó có trước và sau active còn solid vs regular, ta phải copy chay thêm các icon active nữa
+                -> Chú ý khác viewport vs viewBox
+            -> Sửa MenuItem thêm prop activeIcon và xử lý logic xem hiện icon nào: bằng css 
+                -> mặc định hiện icon và ẩn activeIcon, khi thẻ có thêm class .avtive thì đảo lại hiện activeIcon và ẩn icon
+                -> sửa các icon df để tránh lệch: https://youtu.be/I6DWZWkAhhY?t=2541
+            + Thêm page/Live, config file routes dẫn đến trang page dạng DefaultLayout
