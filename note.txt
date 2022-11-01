@@ -411,3 +411,14 @@
         - Có thể dùng opacity set mã màu hex 8 số: https://youtu.be/-5jFoaGqcF8?t=1422, khá hay
         - Chú ý css kích thước icon là dùng font-size chứ k phải set width, height nhé, trước đã note rổi mà ít làm nên quên đó
         - Copy màu của icon (dạng sgv): copy phần fill ấy: https://youtu.be/-5jFoaGqcF8?t=1514
+    ** Xây dựng UI Sidebar #3:
+        - Tạo Tippy khi hover vào AccountItem: chú ý có delay show nhé (hover khi dừng lại mới hiện)
+            -> Chú ý bọc thẻ div bên ngoài HeadlessTippy tránh warning
+        - Chú ý hàm render của Tippy: có cái tabIndex:
+            -> link tabIndex: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex
+            -> đại loại là tabIndex cho ta thứ tự khi gõ tab nó chuyển đến, k có thuộc tính tabIndex hoặc có những bằng -1 hoặc âm thì k tab vào được (nhưng vẫn thêm bằng -1 vì với 1 số loại như input k có tabIndex vẫn tab vào dược)
+        - Tách AccountPreview:
+            -> ...
+            -> À có mẹo gõ font-size là fz sẽ k bị trùng
+            -> Children của components có thể để dấu cách phần cách được k như html, vd <Button>a </Button> là thêm dấu cách sau a
+        -> Tippy còn hay ở chỗ dưới k đủ chỗ thì hiện lên trên, tương tự với các hướng khác :D
