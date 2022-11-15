@@ -22,6 +22,9 @@
     -> tạo .prettierrc rồi copy rule vào, như a sơn cũng được (đầy đủ hơn trong setting, sau nên chuyển rule trong setting ra file .prettierrc vào cd/~)
     -> Thêm .vscode/setting.json rồi thêm config vào
     ==> máy cá nhân setup hết rồi nên có thể k cần, nhưng làm nhóm thì cần
+    ->> Chú ý để format all files cần phải cài prettier chứ k chỉ extension, rồi gõ lệnh theo link: https://stackoverflow.com/questions/43666270/how-do-i-format-all-files-in-a-visual-studio-code-project
+    ->> Đồng thời xử lý format before commit: https://gist.github.com/estorgio/e8bcaa8e87d0fcdcf85fdf598956e34c
+- Nên cài tailwindcss (cách cài và dùng trên trang chủ), nhớ cài kèm prettier-plugin-tailwindcss: https://tailwindcss.com/docs/editor-setup#automatic-class-sorting-with-prettier
 - Cấu hình SASS/CSS:
     + Tạo components/GlobalStyles ...
     + Thêm <GlobalStyles></GlobalStyles> vào index.js
