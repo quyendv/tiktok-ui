@@ -13,7 +13,8 @@ const cx = classNames.bind(styles);
 const defaultFn = () => {}; // dùng Fn trống thì k sợ bị lỗi
 
 function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn }) {
-    const [history, setHistory] = useState([{ data: items }]);
+    // History là 1 mảng, mỗi phần tử là 1 obj chứa 2 key là title: string || undefined nếu cấp đầu và data: [mảng các object con, với các obj có thể có title, icon, chidren, và children (obj) luôn có title và data (mảng) nữa]
+    const [history, setHistory] = useState([{ data: items }]); // Array: [{data: [], title k có nên undefined}, {title: 'Language', data:[...]}, ]
     const current = history[history.length - 1]; // Cấp cuối, luôn lấy ra cấp cuối và render, lùi về thì xóa cấp cuối khỏi history
 
     const renderItems = () => {
